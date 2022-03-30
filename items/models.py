@@ -69,7 +69,9 @@ class Items(models.Model):
 
 class Owners(models.Model):
     name = models.CharField(max_length=50, unique=True)
-    description = models.TextField(null=True, blank=True)
+    location = models.CharField(max_length=50, null=True, blank=True)
+    url = models.URLField(null=True, blank=True)
+    owner_affilaite_program_id = models.CharField(max_length=50, null=True, blank=True)
 
     class Meta:
         verbose_name = "Owner"
@@ -81,9 +83,7 @@ class Owners(models.Model):
 
 class Benefits(models.Model):
     name = models.CharField(max_length=50, unique=True)
-    location = models.CharField(max_length=50, null=True, blank=True)
-    url = models.URLField(null=True, blank=True)
-    owner_affilaite_program_id = models.CharField(max_length=50, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "Benefits"
