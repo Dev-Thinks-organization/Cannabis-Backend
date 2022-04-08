@@ -24,8 +24,10 @@ class Items(models.Model):
     owner = models.ForeignKey("Owners", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    price = models.CharField(null=True, blank=True, max_length=40)
-    original_price = models.DecimalField(max_digits=10, decimal_places=2)
+    price = models.DecimalField(null=True, blank=True, max_digits=10, decimal_places=2)
+    original_price = models.DecimalField(
+        max_digits=10, decimal_places=2, null=True, blank=True
+    )
     original_price_from = models.DecimalField(
         max_digits=10, decimal_places=2, null=True, blank=True
     )

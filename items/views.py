@@ -36,7 +36,13 @@ class ItemFilter(filters.FilterSet):
 
 class ItemsViewSet(viewsets.ModelViewSet):
     """
-    A simple ViewSet for viewing and editing the items
+    #RestApi Endpoint for viewing and editing the items
+    ## Api Actions Supported
+    `GET`
+    `POST`
+    `PATCH`
+    `UPDATE`
+    `DELETE`
 
     """
 
@@ -50,7 +56,23 @@ class ItemsViewSet(viewsets.ModelViewSet):
     # filterset_fields=('name')
 
 
-class CategoryListView(generics.ListAPIView, generics.RetrieveAPIView):
+class CategoryListView(
+    generics.ListAPIView,
+    generics.RetrieveAPIView,
+    generics.CreateAPIView,
+    generics.DestroyAPIView,
+    generics.UpdateAPIView,
+):
+    """
+    #RestApi Endpoint for viewing and editing the Category
+    ## Api Actions Supported
+    `GET`
+    `POST`
+    `UPDATE`
+    `DELETE`
+
+    """
+
     model = Category
     queryset = Category.objects.filter(level=0)
     serializer_class = CategorySerializer
@@ -58,6 +80,12 @@ class CategoryListView(generics.ListAPIView, generics.RetrieveAPIView):
 
 
 class BenefitsListView(APIView):
+    """
+    #RestApi Endpoint for getting Benefits
+    ## Api Actions Supported
+    `GET`
+    """
+
     def get(self, request):
         queryset = Benefits.objects.all()
         serializer = BenefitsSerializer(
@@ -67,6 +95,12 @@ class BenefitsListView(APIView):
 
 
 class categoryAncestorsView(APIView):
+    """
+    #RestApi Endpoint for getting Category Ancestors
+    ## Api Actions Supported
+    `GET`
+    """
+
     def get(self, request, id):
         category_instance = Category.objects.get(id=id)
         ancestors = category_instance.get_ancestors(include_self=True)

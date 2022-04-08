@@ -1,0 +1,856 @@
+openapi: 3.0.3
+info:
+  title: ''
+  version: 0.0.0
+paths:
+  /api/benefits/:
+    get:
+      operationId: api_benefits_retrieve
+      description: |-
+        #RestApi Endpoint for getting Benefits
+        ## Api Actions Supported
+        `GET`
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/category/:
+    get:
+      operationId: api_category_list
+      description: |-
+        #RestApi Endpoint for viewing and editing the Category
+        ## Api Actions Supported
+        `GET`
+        `POST`
+        `UPDATE`
+        `DELETE`
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCategoryList'
+          description: ''
+    post:
+      operationId: api_category_create
+      description: |-
+        #RestApi Endpoint for viewing and editing the Category
+        ## Api Actions Supported
+        `GET`
+        `POST`
+        `UPDATE`
+        `DELETE`
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Category'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Category'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+    put:
+      operationId: api_category_update
+      description: |-
+        #RestApi Endpoint for viewing and editing the Category
+        ## Api Actions Supported
+        `GET`
+        `POST`
+        `UPDATE`
+        `DELETE`
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Category'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Category'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+    patch:
+      operationId: api_category_partial_update
+      description: |-
+        #RestApi Endpoint for viewing and editing the Category
+        ## Api Actions Supported
+        `GET`
+        `POST`
+        `UPDATE`
+        `DELETE`
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCategory'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCategory'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCategory'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+    delete:
+      operationId: api_category_destroy
+      description: |-
+        #RestApi Endpoint for viewing and editing the Category
+        ## Api Actions Supported
+        `GET`
+        `POST`
+        `UPDATE`
+        `DELETE`
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/category/ancestor/{id}:
+    get:
+      operationId: api_category_ancestor_retrieve
+      description: |-
+        #RestApi Endpoint for getting Category Ancestors
+        ## Api Actions Supported
+        `GET`
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/items/:
+    get:
+      operationId: api_items_list
+      description: |-
+        #RestApi Endpoint for viewing and editing the items
+        ## Api Actions Supported
+        `GET`
+        `POST`
+        `PATCH`
+        `UPDATE`
+        `DELETE`
+      parameters:
+      - in: query
+        name: benefits__name
+        schema:
+          type: string
+      - in: query
+        name: category__name
+        schema:
+          type: string
+      - in: query
+        name: max_price
+        schema:
+          type: number
+      - in: query
+        name: min_price
+        schema:
+          type: number
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedItemsList'
+          description: ''
+    post:
+      operationId: api_items_create
+      description: |-
+        #RestApi Endpoint for viewing and editing the items
+        ## Api Actions Supported
+        `GET`
+        `POST`
+        `PATCH`
+        `UPDATE`
+        `DELETE`
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Items'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Items'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Items'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Items'
+          description: ''
+  /api/items/{id}/:
+    get:
+      operationId: api_items_retrieve
+      description: |-
+        #RestApi Endpoint for viewing and editing the items
+        ## Api Actions Supported
+        `GET`
+        `POST`
+        `PATCH`
+        `UPDATE`
+        `DELETE`
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Item.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Items'
+          description: ''
+    put:
+      operationId: api_items_update
+      description: |-
+        #RestApi Endpoint for viewing and editing the items
+        ## Api Actions Supported
+        `GET`
+        `POST`
+        `PATCH`
+        `UPDATE`
+        `DELETE`
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Item.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Items'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Items'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Items'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Items'
+          description: ''
+    patch:
+      operationId: api_items_partial_update
+      description: |-
+        #RestApi Endpoint for viewing and editing the items
+        ## Api Actions Supported
+        `GET`
+        `POST`
+        `PATCH`
+        `UPDATE`
+        `DELETE`
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Item.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedItems'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedItems'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedItems'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Items'
+          description: ''
+    delete:
+      operationId: api_items_destroy
+      description: |-
+        #RestApi Endpoint for viewing and editing the items
+        ## Api Actions Supported
+        `GET`
+        `POST`
+        `PATCH`
+        `UPDATE`
+        `DELETE`
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Item.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/schema/:
+    get:
+      operationId: api_schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+components:
+  schemas:
+    Category:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 50
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubCategory'
+      required:
+      - children
+      - name
+    Items:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 50
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        original_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        original_price_from:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        original_price_to:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        price_range_from:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        price_range_to:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        reviews_score:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        count_of_reviews:
+          type: integer
+          nullable: true
+        img_source_link:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 200
+        link_to_item:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 200
+        description:
+          type: string
+          nullable: true
+        popular_ind:
+          type: boolean
+        recent_customer_name:
+          type: string
+          nullable: true
+          maxLength: 50
+        recent_customer_desc:
+          type: string
+          nullable: true
+        recent_customer_score:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        owner:
+          type: integer
+        category:
+          type: integer
+          nullable: true
+        benefits:
+          type: array
+          items:
+            type: integer
+      required:
+      - benefits
+      - created_at
+      - id
+      - name
+      - owner
+      - updated_at
+    PaginatedCategoryList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+    PaginatedItemsList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Items'
+    PatchedCategory:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 50
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubCategory'
+    PatchedItems:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 50
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        original_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        original_price_from:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        original_price_to:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        price_range_from:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        price_range_to:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        reviews_score:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        count_of_reviews:
+          type: integer
+          nullable: true
+        img_source_link:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 200
+        link_to_item:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 200
+        description:
+          type: string
+          nullable: true
+        popular_ind:
+          type: boolean
+        recent_customer_name:
+          type: string
+          nullable: true
+          maxLength: 50
+        recent_customer_desc:
+          type: string
+          nullable: true
+        recent_customer_score:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        owner:
+          type: integer
+        category:
+          type: integer
+          nullable: true
+        benefits:
+          type: array
+          items:
+            type: integer
+    SubCategory:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 50
+      required:
+      - id
+      - name
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid

@@ -24,6 +24,7 @@ class Command(BaseCommand):
         benefites_seeder = Seed.seeder()
         benefites_seeder.add_entity(Benefits, 10)
         category_seeder.add_entity(Category, 10)
+        price_choice = [None, 123421]
         items_seeder.add_entity(
             Items,
             150,
@@ -34,6 +35,12 @@ class Command(BaseCommand):
                 "recent_customer_name": "https://picsum.photos/200/300",
                 "recent_customer_desc": "https://picsum.photos/200/300",
                 "recent_customer_score": random.randint(1, 5),
+                # "price": lambda x: random.choice(price_choice),
+                # "original_price": lambda x: random.choice(price_choice),
+                # "original_price_from": lambda x: random.choice(price_choice),
+                # "original_price_to": lambda x: random.choice(price_choice),
+                # "price_range_from": lambda x: random.choice(price_choice),
+                # "price_range_to": lambda x: random.choice(price_choice),
             },
         )
 
