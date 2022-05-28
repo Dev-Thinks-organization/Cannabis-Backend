@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-pliue5jr05wu6@#*t5jj^zo+3bo!h$t^$=!@z4$3=$w=9wlaui"
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# ssssssssssssssss: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -93,8 +93,8 @@ DATABASES = {
     }
 }
 
-if DEBUG:
-    DATABASES["default"] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+# if DEBUG:
+#     DATABASES["default"] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 
 # Password validation
