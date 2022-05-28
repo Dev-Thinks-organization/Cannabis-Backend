@@ -38,8 +38,7 @@ urlpatterns = [
         name="redoc",
     ),
 ]
-admin.site.site_header = "Albert CBD Backend Portal"
+admin.site.site_header = "Albert CBD Portal"
 admin.site.site_title = "CBD Backend Portal"
 admin.site.index_title = "Welcome to CBD Admin Portal"
 
-urlpatterns += [re_path(r"^.*", TemplateView.as_view(template_name="index.html"))]

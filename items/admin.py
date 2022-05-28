@@ -8,18 +8,31 @@ import pandas as pd
 import pprint
 
 # register all the models in the admin page
-admin.site.register(Category, DraggableMPTTAdmin)
 
-admin.site.register(Owners)
-admin.site.register(Benefits)
 
 
 class CsvImportForm(forms.Form):
     csv_upload = forms.FileField()
 
+@admin.action(description='Mark selected Items as Active')
+def make_active(modeladmin, request, queryset):
+    queryset.update(active=True)
+
+@admin.action(description="Mark selected Items as InActive")
+def make_in_active(modeladmin,request,queryset):
+    queryset.update(active=False)
 
 class ItemsAdmin(admin.ModelAdmin):
-    list_display = ("name", "id")
+    list_display = ("name","BeneFits","Categories","owner", "id",)
+    search_fields = ("name","owner__name","price","created_at",)
+    list_filter = ("category","benefits","owner",)
+    actions = [make_active,make_in_active]
+    filter_input_length = {
+        "category": 1,
+
+        "benefits":1,
+        "owner":1,
+    }
 
     def get_urls(self):
         urls = super().get_urls()
@@ -74,4 +87,14 @@ class ItemsAdmin(admin.ModelAdmin):
         return render(request, "admin/csv_upload.html", data)
 
 
+class OwnerAdmin(admin.ModelAdmin):
+    list_display = ("owner_affilaite_program_id","location","url",)
+    search_fields = ("owner_affilaite_program_id","location","url",)
+    search_help_text =  ' You can Search By "owner_affilaite_program_id","location","url"'
+
+
 admin.site.register(Items, ItemsAdmin)
+admin.site.register(Category, DraggableMPTTAdmin)
+
+admin.site.register(Owners,OwnerAdmin)
+admin.site.register(Benefits)

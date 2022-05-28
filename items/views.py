@@ -46,7 +46,7 @@ class ItemsViewSet(viewsets.ModelViewSet):
 
     """
 
-    queryset = Items.objects.all()
+    queryset = Items.objects.filter(active=True).all()
     serializer_class = ItemsSerializer
     filterset_class = ItemFilter
 
