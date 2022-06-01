@@ -47,24 +47,28 @@ class Items(models.Model):
     count_of_reviews = models.IntegerField(null=True, blank=True)
     img_source_link = models.URLField(null=True, blank=True)
     link_to_item = models.URLField(null=True, blank=True)
-    category = models.ManyToManyField(
-        Category, null=True, blank=True
-    )
+    category = models.ManyToManyField(Category, blank=True)
     benefits = models.ManyToManyField(
         "Benefits",
     )
     description = models.TextField(null=True, blank=True)
-    popular_ind = models.IntegerField(null=True,blank=True,max_length=100,)
+    popular_ind = models.IntegerField(
+        null=True,
+        blank=True,
+    )
     recent_customer_name = models.CharField(max_length=50, null=True, blank=True)
     recent_customer_desc = models.TextField(null=True, blank=True)
     recent_customer_score = models.DecimalField(
         max_digits=10, decimal_places=2, null=True, blank=True
     )
     active = models.BooleanField(default=False)
+
     def Categories(self):
         return "\n \t || ".join([p.name for p in self.category.all()])
+
     def BeneFits(self):
         return "\n\t || ".join([p.name for p in self.benefits.all()])
+
     class Meta:
         verbose_name_plural = "Items"
         verbose_name = "Item"
