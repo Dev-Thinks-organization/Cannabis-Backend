@@ -51,14 +51,14 @@ class Items(models.Model):
     benefits = models.ManyToManyField(
         "Benefits",
     )
-    description = models.TextField(null=True, blank=True, max_length=133)
+    description = models.TextField(null=True, blank=True)
     popular_ind = models.IntegerField(
         null=True,
         blank=True,
     )
     recent_customer_name = models.CharField(max_length=50, null=True, blank=True)
-    recent_customer_title = models.CharField(max_length=133, null=True, blank=True)
-    recent_customer_desc = models.TextField(null=True, blank=True, max_length=133)
+    recent_customer_title = models.CharField(max_length=255, null=True, blank=True)
+    recent_customer_desc = models.TextField(null=True, blank=True)
     recent_customer_score = models.DecimalField(
         max_digits=10, decimal_places=2, null=True, blank=True
     )
