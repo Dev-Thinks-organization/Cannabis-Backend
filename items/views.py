@@ -15,22 +15,37 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
 from rest_framework import permissions
 from rest_framework import generics
+import django_filters
+from django_filters.constants import EMPTY_VALUES
 
 
-# Create your views here.
+class ListFilter(filters.Filter):
+    """
+    Filter through comma seperated values
+    eg:- &category=1,2,4
+    """
+
+    def filter(self, qs, value):
+        if value in EMPTY_VALUES:
+            return qs
+        value_list = value.split(",")
+        qs = super().filter(qs, value_list)
+        return qs
 
 
 class ItemFilter(filters.FilterSet):
     min_price = filters.NumberFilter(field_name="original_price", lookup_expr="gte")
     max_price = filters.NumberFilter(field_name="original_price", lookup_expr="lte")
+    category = ListFilter(field_name="category__name", lookup_expr="in")
+    benefits = ListFilter(field_name="benefits__name", lookup_expr="in")
 
     class Meta:
         model = Items
         fields = [
             "min_price",
             "max_price",
-            "category__name",
-            "benefits__name",
+            "category",
+            "benefits",
         ]
 
 

@@ -6,33 +6,33 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('items', '0007_items_recent_customer_title'),
+        ("items", "0007_items_recent_customer_title"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='items',
-            name='category',
-            field=models.ManyToManyField(blank=True, to='items.category'),
+            model_name="items",
+            name="category",
+            field=models.ManyToManyField(blank=True, to="items.category"),
         ),
         migrations.AlterField(
-            model_name='items',
-            name='description',
+            model_name="items",
+            name="description",
             field=models.TextField(blank=True, max_length=133, null=True),
         ),
         migrations.AlterField(
-            model_name='items',
-            name='popular_ind',
+            model_name="items",
+            name="popular_ind",
             field=models.IntegerField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='items',
-            name='recent_customer_desc',
+            model_name="items",
+            name="recent_customer_desc",
             field=models.TextField(blank=True, max_length=133, null=True),
         ),
         migrations.AlterField(
-            model_name='items',
-            name='recent_customer_title',
+            model_name="items",
+            name="recent_customer_title",
             field=models.CharField(blank=True, max_length=133, null=True),
         ),
     ]

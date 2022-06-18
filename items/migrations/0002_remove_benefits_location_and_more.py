@@ -6,44 +6,44 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('items', '0001_initial'),
+        ("items", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='benefits',
-            name='location',
+            model_name="benefits",
+            name="location",
         ),
         migrations.RemoveField(
-            model_name='benefits',
-            name='owner_affilaite_program_id',
+            model_name="benefits",
+            name="owner_affilaite_program_id",
         ),
         migrations.RemoveField(
-            model_name='benefits',
-            name='url',
+            model_name="benefits",
+            name="url",
         ),
         migrations.RemoveField(
-            model_name='owners',
-            name='description',
+            model_name="owners",
+            name="description",
         ),
         migrations.AddField(
-            model_name='benefits',
-            name='description',
+            model_name="benefits",
+            name="description",
             field=models.TextField(blank=True, null=True),
         ),
         migrations.AddField(
-            model_name='owners',
-            name='location',
+            model_name="owners",
+            name="location",
             field=models.CharField(blank=True, max_length=50, null=True),
         ),
         migrations.AddField(
-            model_name='owners',
-            name='owner_affilaite_program_id',
+            model_name="owners",
+            name="owner_affilaite_program_id",
             field=models.CharField(blank=True, max_length=50, null=True),
         ),
         migrations.AddField(
-            model_name='owners',
-            name='url',
+            model_name="owners",
+            name="url",
             field=models.URLField(blank=True, null=True),
         ),
     ]

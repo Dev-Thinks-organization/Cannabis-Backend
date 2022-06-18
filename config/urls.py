@@ -41,4 +41,3 @@ urlpatterns = [
 admin.site.site_header = "Albert CBD Portal"
 admin.site.site_title = "CBD Backend Portal"
 admin.site.index_title = "Welcome to CBD Admin Portal"
-

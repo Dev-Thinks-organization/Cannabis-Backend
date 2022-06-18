@@ -9,82 +9,174 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Benefits',
+            name="Benefits",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50, unique=True)),
-                ('location', models.CharField(blank=True, max_length=50, null=True)),
-                ('url', models.URLField(blank=True, null=True)),
-                ('owner_affilaite_program_id', models.CharField(blank=True, max_length=50, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50, unique=True)),
+                ("location", models.CharField(blank=True, max_length=50, null=True)),
+                ("url", models.URLField(blank=True, null=True)),
+                (
+                    "owner_affilaite_program_id",
+                    models.CharField(blank=True, max_length=50, null=True),
+                ),
             ],
             options={
-                'verbose_name': 'Benefit',
-                'verbose_name_plural': 'Benefits',
+                "verbose_name": "Benefit",
+                "verbose_name_plural": "Benefits",
             },
         ),
         migrations.CreateModel(
-            name='Category',
+            name="Category",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50, unique=True)),
-                ('name_discription', models.TextField(blank=True, null=True)),
-                ('parent_discription', models.TextField(blank=True, null=True)),
-                ('lft', models.PositiveIntegerField(editable=False)),
-                ('rght', models.PositiveIntegerField(editable=False)),
-                ('tree_id', models.PositiveIntegerField(db_index=True, editable=False)),
-                ('level', models.PositiveIntegerField(editable=False)),
-                ('parent', mptt.fields.TreeForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='children', to='items.category')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50, unique=True)),
+                ("name_discription", models.TextField(blank=True, null=True)),
+                ("parent_discription", models.TextField(blank=True, null=True)),
+                ("lft", models.PositiveIntegerField(editable=False)),
+                ("rght", models.PositiveIntegerField(editable=False)),
+                ("tree_id", models.PositiveIntegerField(db_index=True, editable=False)),
+                ("level", models.PositiveIntegerField(editable=False)),
+                (
+                    "parent",
+                    mptt.fields.TreeForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="children",
+                        to="items.category",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='Owners',
+            name="Owners",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50, unique=True)),
-                ('description', models.TextField(blank=True, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50, unique=True)),
+                ("description", models.TextField(blank=True, null=True)),
             ],
             options={
-                'verbose_name': 'Owner',
-                'verbose_name_plural': 'Owners',
+                "verbose_name": "Owner",
+                "verbose_name_plural": "Owners",
             },
         ),
         migrations.CreateModel(
-            name='Items',
+            name="Items",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50, unique=True)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('price', models.CharField(blank=True, max_length=40, null=True)),
-                ('original_price', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('original_price_from', models.DecimalField(blank=True, decimal_places=2, max_digits=10, null=True)),
-                ('original_price_to', models.DecimalField(blank=True, decimal_places=2, max_digits=10, null=True)),
-                ('price_range_from', models.DecimalField(blank=True, decimal_places=2, max_digits=10, null=True)),
-                ('price_range_to', models.DecimalField(blank=True, decimal_places=2, max_digits=10, null=True)),
-                ('reviews_score', models.DecimalField(blank=True, decimal_places=2, max_digits=10, null=True)),
-                ('count_of_reviews', models.IntegerField(blank=True, null=True)),
-                ('img_source_link', models.URLField(blank=True, null=True)),
-                ('link_to_item', models.URLField(blank=True, null=True)),
-                ('description', models.TextField(blank=True, null=True)),
-                ('popular_ind', models.BooleanField(default=False)),
-                ('recent_customer_name', models.CharField(blank=True, max_length=50, null=True)),
-                ('recent_customer_desc', models.TextField(blank=True, null=True)),
-                ('recent_customer_score', models.DecimalField(blank=True, decimal_places=2, max_digits=10, null=True)),
-                ('benefits', models.ManyToManyField(to='items.benefits')),
-                ('category', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='items.category')),
-                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='items.owners')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50, unique=True)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("price", models.CharField(blank=True, max_length=40, null=True)),
+                (
+                    "original_price",
+                    models.DecimalField(decimal_places=2, max_digits=10),
+                ),
+                (
+                    "original_price_from",
+                    models.DecimalField(
+                        blank=True, decimal_places=2, max_digits=10, null=True
+                    ),
+                ),
+                (
+                    "original_price_to",
+                    models.DecimalField(
+                        blank=True, decimal_places=2, max_digits=10, null=True
+                    ),
+                ),
+                (
+                    "price_range_from",
+                    models.DecimalField(
+                        blank=True, decimal_places=2, max_digits=10, null=True
+                    ),
+                ),
+                (
+                    "price_range_to",
+                    models.DecimalField(
+                        blank=True, decimal_places=2, max_digits=10, null=True
+                    ),
+                ),
+                (
+                    "reviews_score",
+                    models.DecimalField(
+                        blank=True, decimal_places=2, max_digits=10, null=True
+                    ),
+                ),
+                ("count_of_reviews", models.IntegerField(blank=True, null=True)),
+                ("img_source_link", models.URLField(blank=True, null=True)),
+                ("link_to_item", models.URLField(blank=True, null=True)),
+                ("description", models.TextField(blank=True, null=True)),
+                ("popular_ind", models.BooleanField(default=False)),
+                (
+                    "recent_customer_name",
+                    models.CharField(blank=True, max_length=50, null=True),
+                ),
+                ("recent_customer_desc", models.TextField(blank=True, null=True)),
+                (
+                    "recent_customer_score",
+                    models.DecimalField(
+                        blank=True, decimal_places=2, max_digits=10, null=True
+                    ),
+                ),
+                ("benefits", models.ManyToManyField(to="items.benefits")),
+                (
+                    "category",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="items.category",
+                    ),
+                ),
+                (
+                    "owner",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="items.owners"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Item',
-                'verbose_name_plural': 'Items',
+                "verbose_name": "Item",
+                "verbose_name_plural": "Items",
             },
         ),
     ]
