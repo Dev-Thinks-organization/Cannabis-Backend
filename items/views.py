@@ -102,7 +102,7 @@ class BenefitsListView(APIView):
     """
 
     def get(self, request):
-        queryset = Benefits.objects.all()
+        queryset = Benefits.objects.all().order_by("name")
         serializer = BenefitsSerializer(
             queryset, many=True, context={"request": request}
         )
