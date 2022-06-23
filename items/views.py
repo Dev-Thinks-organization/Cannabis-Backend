@@ -36,8 +36,8 @@ class ListFilter(filters.Filter):
 class ItemFilter(filters.FilterSet):
     min_price = filters.NumberFilter(field_name="original_price", lookup_expr="gte")
     max_price = filters.NumberFilter(field_name="original_price", lookup_expr="lte")
-    category = ListFilter(field_name="category__name__in", lookup_expr="in")
-    benefits = ListFilter(field_name="benefits__name__in", lookup_expr="in")
+    category = ListFilter(field_name="category__name", lookup_expr="in")
+    benefits = ListFilter(field_name="benefits__name", lookup_expr="in")
 
     class Meta:
         model = Items
