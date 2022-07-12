@@ -37,6 +37,9 @@ urlpatterns = [
         SpectacularRedocView.as_view(url_name="schema"),
         name="redoc",
     ),
+    path("api-auth/", include("rest_framework.urls")),
+    path("auth/", include("dj_rest_auth.urls")),
+    # path("registration/", include("dj_rest_auth.registration.urls")),
 ]
 admin.site.site_header = "Albert CBD Portal"
 admin.site.site_title = "CBD Backend Portal"

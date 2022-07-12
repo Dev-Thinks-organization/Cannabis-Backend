@@ -66,25 +66,28 @@ class ItemsViewSet(viewsets.ModelViewSet):
     filterset_class = ItemFilter
 
     search_fields = ("name",)
-    # filterset_fields = ('name', 'price')
 
-    # filterset_fields=('name')
+    def get_permissions(self):
+        if self.action == "list" or self.action == "retrieve":
+            permission_classes = [permissions.AllowAny]
+
+        elif self.action == "create":
+            permission_classes = [permissions.IsAuthenticated]
+        else:
+            permission_classes = [permissions.IsAuthenticated]
+
+        return [permission() for permission in permission_classes]
 
 
 class CategoryListView(
     generics.ListAPIView,
     generics.RetrieveAPIView,
-    generics.CreateAPIView,
-    generics.DestroyAPIView,
-    generics.UpdateAPIView,
 ):
     """
     #RestApi Endpoint for viewing and editing the Category
     ## Api Actions Supported
     `GET`
-    `POST`
-    `UPDATE`
-    `DELETE`
+
 
     """
 
@@ -102,6 +105,7 @@ class BenefitsListView(APIView):
     """
 
     def get(self, request):
+
         queryset = Benefits.objects.all().order_by("name")
         serializer = BenefitsSerializer(
             queryset, many=True, context={"request": request}

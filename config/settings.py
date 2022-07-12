@@ -41,6 +41,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "dj_rest_auth.registration",
     "drf_spectacular",
     "drf_spectacular_sidecar",  # required for Django collectstatic discovery
     "items",
@@ -49,7 +54,11 @@ INSTALLED_APPS = [
     "django_seed",
     "django_filters",
     "corsheaders",
+    "dj_rest_auth",
+    "rest_framework.authtoken",
 ]
+SITE_ID = 1
+
 CORS_ALLOW_ALL_ORIGINS = True
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -167,7 +176,14 @@ REST_FRAMEWORK = {
         "rest_framework.filters.SearchFilter",
         "rest_framework.filters.OrderingFilter",
     ),
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.TokenAuthentication",
+        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ),
 }
+JWT_AUTH_COOKIE = "cbd_token"
+JWT_AUTH_REFRESH_COOKIE = "cbd-refresh-token"
 
 # Django Jazzmin Admin Settings
 JAZZMIN_SETTINGS = {
